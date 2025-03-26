@@ -25,10 +25,10 @@ const cancel = () => {
 
 </script>
 <template>
-    <div class="flex">
-        <img v-for="path in imagePaths" alt="user header" :src="path" class="monster-image" @click="selectedPath = path"/>
+    <div class="flex flex-wrap gap-3 justify-content-center">
+        <img v-for="path in imagePaths" alt="user header" :src="path" class="monster-image" @click="selectedPath = path" :class="{ selected: selectedPath == path}"/>
     </div>
-    <div>
+    <div class="flex gap-4 mt-4">
         <Button label="Cancel" severity="secondary" outlined class="w-full" @click="cancel"/>
         <Button label="Select" class="w-full" @click="save" />
     </div>
@@ -38,5 +38,11 @@ img {
     max-width: 25%;
     max-height: 30vh;
     object-fit: contain;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 2rem;
+}
+.selected {
+    border: 5px solid #34d399;
 }
 </style>

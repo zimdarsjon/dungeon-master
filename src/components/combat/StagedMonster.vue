@@ -60,19 +60,21 @@ const selectImage = () => {
 <template>
     <Card style="width: 25rem; overflow: hidden" class="card">
         <template #header>
-            <img v-if="props.monster.image && !editMode" alt="user header" :src="props.monster.image" class="w-full monster-image" @click="selectImage" />
-            <img v-else-if="props.monster.image" alt="user header" :src="localMonster.image" class="w-full monster-image" @click="selectImage" />
+            <div :class="{ 'cursor-pointer': editMode}" @click="selectImage">
+                <img v-if="props.monster.image && !editMode" alt="user header" :src="props.monster.image" class="w-full monster-image" />
+                <img v-else-if="editMode && localMonster.image" alt="user header" :src="localMonster.image" class="w-full monster-image" />
+                <span v-else class="m-5 block" ><i class="pi pi-image" ></i></span>
+            </div>
         </template>
         <template #title>
-            <div v-if="editMode">
+            <div v-if="editMode" class="flex flex-col gap-2 justify-content-between align-items-center mb-1">
                 <label>Name: </label>
                 <InputText v-model="localMonster.name" ref="nameInput" autofocus/>
             </div>
             <span v-else>{{ props.monster.name ?? '' }}</span>
         </template>
-        <!-- <template #subtitle>{{ `$${props.monster.price}` }}</template> -->
         <template #content>
-            <div v-if="editMode">
+            <div v-if="editMode" class="flex flex-col gap-2 justify-content-between align-items-center mb-2">
                 <label>Initiative: </label>
                 <InputNumber v-model="localMonster.modifier" />
             </div>
@@ -80,7 +82,7 @@ const selectImage = () => {
                 <label>Initiative: </label>
                 <span>{{ props.monster.modifier }}</span>
             </p>
-            <div v-if="editMode">
+            <div v-if="editMode" class="flex flex-col gap-2 justify-content-between align-items-center mb-2">
                 <label>Count: </label>
                 <InputNumber v-model="localMonster.count" />
             </div>

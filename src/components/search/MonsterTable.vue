@@ -27,6 +27,7 @@ const props = defineProps<{
         <Column field="cr" header="CR" sortable></Column>
         <Column field="type" header="Type" sortable></Column>
         <Column field="size" header="Size"></Column>
+        <Column field="document__title" header="Source"></Column>
         <Column v-if="combatStatus == CombatStatus.Staging">
             <template #body="slotProps">
                 <Button @click="combatStore.addMonsterToStaged(slotProps.data)">Add To Combat</Button>

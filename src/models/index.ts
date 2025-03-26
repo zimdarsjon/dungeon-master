@@ -84,3 +84,18 @@ export interface StagedMonster {
     count?: number;
     image?: string;
 }
+
+export interface StagedPlayer {
+    id: number;
+    name: string;
+    initiative?: number;
+    image?: string;
+}
+
+export interface Combatant {
+    id: number;
+    name: string;
+    player?: boolean;
+    initiative?: number;
+    image?: string;
+}
