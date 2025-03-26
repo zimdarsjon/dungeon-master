@@ -58,7 +58,7 @@ const selectImage = () => {
 
 </script>
 <template>
-    <Card style="width: 25rem; overflow: hidden" class="card">
+    <Card style="width: 23rem; overflow: hidden" class="card">
         <template #header>
             <div :class="{ 'cursor-pointer': editMode}" @click="selectImage">
                 <img v-if="props.monster.image && !editMode" alt="user header" :src="props.monster.image" class="w-full monster-image" />

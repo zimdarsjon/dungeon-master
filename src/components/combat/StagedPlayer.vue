@@ -12,7 +12,7 @@ const props = defineProps<{
 
 </script>
 <template>
-    <Card style="width: 25rem; overflow: hidden" class="card">
+    <Card style="width: 23rem; overflow: hidden" class="card">
         <template #header>
             <img :alt="`${player.name} image`" :src="props.player.image" class="w-full monster-image" />
         </template>

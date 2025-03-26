@@ -62,13 +62,13 @@ onUnmounted(() => window.removeEventListener('keydown', combatStore.handleKeyBoa
         </TabList>
         <TabPanels>
             <TabPanel value="0">
-                <div class="flex flex-wrap">
-                    <StagedMonster v-for="monster in stagedMonsters" :monster="monster" />
+                <div class="flex flex-wrap gap-2 justify-content-evenly">
+                    <StagedMonster v-for="monster in stagedMonsters" :monster="monster" class="mb-2"/>
                 </div>
             </TabPanel>
             <TabPanel value="1">
-                <div class="flex flex-wrap">
-                    <StagedPlayer v-for="player in stagedPlayers" :player="player" />
+                <div class="flex flex-wrap gap-2 justify-content-evenly">
+                    <StagedPlayer v-for="player in stagedPlayers" :player="player" class="mb-2" />
                 </div>
             </TabPanel>
         </TabPanels>

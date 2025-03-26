@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Button, InputText, InputNumber, useDialog, IftaLabel } from 'primevue';
+import { Button, InputText, InputNumber, useDialog } from 'primevue';
 import { ref, inject } from 'vue';
 import type { StagedMonster } from '@/models';
 import { useCombatStore } from '@/stores/combat';
