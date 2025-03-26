@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { Button, Card, InputNumber } from 'primevue';
+import { Card } from 'primevue';
 import type { Combatant } from '@/models';
-import { useCombatStore } from '@/stores/combat';
-
-const combatStore = useCombatStore();
 
 const props = defineProps<{
     combatant: Combatant,
@@ -24,17 +21,6 @@ const emit = defineEmits<{
         <template #title>
             <span>{{ props.combatant.name }}</span>
         </template>
-        <!-- <template #content>
-            <div>
-                <label>Initiative: </label>
-                <InputNumber v-model="props.combatant.initiative" />
-            </div>
-        </template> -->
-        <!-- <template #footer>
-            <div class="flex gap-4 mt-1">
-                <Button label="Remove" severity="secondary" outlined class="w-full" @click="combatStore.removeCombatantFromCombat(props.combatant)"/>
-            </div>#232325
-        </template> -->
     </Card>
 </template>
 <style scoped>

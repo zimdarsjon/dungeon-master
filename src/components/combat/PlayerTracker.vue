@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Button, Card, InputNumber } from 'primevue';
 import type { Combatant } from '@/models';
 import { useCombatStore } from '@/stores/combat';
 import { storeToRefs } from 'pinia';
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 
 const combatStore = useCombatStore();
 
