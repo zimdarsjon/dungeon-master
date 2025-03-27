@@ -11,7 +11,7 @@ import { Skeleton } from 'primevue';
 
 const route = useRoute();
 
-const { findMonsterImagePath } = useImageHelpers();
+const { findOpenMonsterImagePath } = useImageHelpers();
 
 const monster = ref<Open5eMonster>();
 const loading = ref<boolean>(false);
@@ -23,7 +23,7 @@ onMounted(() => {
     Open5eService.getMonster(String(route.params.slug))
         .then(response => {
             monster.value = response?.data;
-            monster.value ? imagePath.value = findMonsterImagePath(monster.value) : null;
+            monster.value ? imagePath.value = findOpenMonsterImagePath(monster.value) : null;
             loading.value = false;
         })
 });

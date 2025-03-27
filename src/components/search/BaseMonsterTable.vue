@@ -2,7 +2,7 @@
 import DataTable from 'primevue/datatable';
 import { Button } from 'primevue';
 import Column from 'primevue/column';
-import { CombatStatus, type APIMonster } from '@/models';
+import { CombatStatus } from '@/models';
 import { useCombatStore } from '@/stores/combat';
 import { useSearchStore } from '@/stores/search';
 import { storeToRefs } from 'pinia';
