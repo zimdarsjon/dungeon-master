@@ -75,11 +75,11 @@ const selectImage = () => {
         </template>
         <template #content>
             <div v-if="editMode" class="flex flex-col gap-2 justify-content-between align-items-center mb-2">
-                <label>Initiative: </label>
+                <label>Modifier: </label>
                 <InputNumber v-model="localMonster.modifier" />
             </div>
             <p class="m-0" v-else>
-                <label>Initiative: </label>
+                <label>Modifier: </label>
                 <span>{{ props.monster.modifier }}</span>
             </p>
             <div v-if="editMode" class="flex flex-col gap-2 justify-content-between align-items-center mb-2">

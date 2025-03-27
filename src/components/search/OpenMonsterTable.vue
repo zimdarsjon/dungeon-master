@@ -2,24 +2,32 @@
 import DataTable from 'primevue/datatable';
 import { Button } from 'primevue';
 import Column from 'primevue/column';
-import { type Monster, CombatStatus } from '@/models';
+import { CombatStatus, type Open5eMonster } from '@/models';
 import { useCombatStore } from '@/stores/combat';
+import { useSearchStore } from '@/stores/search';
 import { storeToRefs } from 'pinia';
+import { useTypeConversionHelpers } from '@/composables/type-conversion.ts';
+
+const { convertOpenMonsterToStagedMonster } = useTypeConversionHelpers();
 
 const combatStore = useCombatStore();
+const searchStore = useSearchStore();
 
 const { combatStatus } = storeToRefs(combatStore);
+const { openApiResults } = storeToRefs(searchStore);
 
-const props = defineProps<{
-    monsters: Monster[]
-}>();
+const addToStaged = (monster: Open5eMonster) => {
+    const stagedMonster = convertOpenMonsterToStagedMonster(monster);
+    combatStore.addMonsterToStaged(stagedMonster);
+}
+
 
 </script>
 <template>
-    <DataTable :value="props.monsters" tableStyle="min-width: 50rem" >
+    <DataTable :value="openApiResults?.results ?? []" tableStyle="min-width: 50rem" >
         <Column field="name" header="Name">
             <template #body="slotProps">
-                <RouterLink :to="`/monsters/${slotProps.data.slug}`">
+                <RouterLink :to="`/monsters/open/${slotProps.data.slug}`">
                     <span>{{ slotProps.data.name }}</span>
                 </RouterLink>
             </template>
@@ -30,7 +38,7 @@ const props = defineProps<{
         <Column field="document__title" header="Source"></Column>
         <Column v-if="combatStatus == CombatStatus.Staging">
             <template #body="slotProps">
-                <Button @click="combatStore.addMonsterToStaged(slotProps.data)">Add To Combat</Button>
+                <Button @click="addToStaged(slotProps.data)">Add To Combat</Button>
             </template>
         </Column>
     </DataTable>

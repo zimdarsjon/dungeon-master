@@ -10,7 +10,7 @@ const { combatants } = storeToRefs(combatStore);
 
 </script>
 <template>
-    <div class="flex flex-column justify-content-evenly h-screen fixed container" >
+    <div class="md:flex flex-column justify-content-evenly h-screen fixed container" >
         <template v-for="combatant in combatants">
             <PlayerTracker v-if="combatant.player" :combatant="combatant"/>
         </template>
@@ -21,5 +21,6 @@ const { combatants } = storeToRefs(combatStore);
 .container {
     right: 0;
     top: 0;
+    display: none;
 }
 </style>

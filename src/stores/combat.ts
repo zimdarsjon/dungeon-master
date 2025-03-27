@@ -1,12 +1,10 @@
 import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
-import { type StagedMonster, CombatStatus, type Monster, type StagedPlayer, type Combatant } from '@/models';
+import { type StagedMonster, CombatStatus, type StagedPlayer, type Combatant } from '@/models';
 import { useToast } from 'primevue/usetoast';
-import { useTypeConversionHelpers } from '@/composables/type-conversion.ts';
 import { usePlayerHelpers } from '@/composables/player';
 import { rollDice } from '@/composables/dice.ts';
 
-const { convertMonsterToStagedMonster } = useTypeConversionHelpers();
 const { getAllPlayers } = usePlayerHelpers();
 
 export const useCombatStore = defineStore('combat', () => {
@@ -24,10 +22,10 @@ export const useCombatStore = defineStore('combat', () => {
     const combatantNextID = ref<number>(1);
     const combatantIndex = ref<number>(0);
 
-    const addMonsterToStaged = (monster: Monster) => {
-        const stagedMonster = convertMonsterToStagedMonster(monster, stagedMonsterNextID.value++);
-        stagedMonsters.value.push(stagedMonster);
-        toast.add({ severity: 'success', summary: 'Added to Combat', detail: stagedMonster.name, life: 3000 });
+    const addMonsterToStaged = (monster: StagedMonster) => {
+        monster.id = stagedMonsterNextID.value++;
+        stagedMonsters.value.push(monster);
+        toast.add({ severity: 'success', summary: 'Added to Combat', detail: monster.name, life: 3000 });
     };
 
     const addCustomMonsterToStaged = (monster: StagedMonster) => {

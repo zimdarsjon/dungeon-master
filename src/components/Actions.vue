@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { Action } from '../models';
+import type { Action, APIAction } from '../models';
 import Card from 'primevue/card';
 
 const props = defineProps<{
-    actions?: Action[],
+    actions?: Action[] | APIAction[],
     title: string
 }>();
 

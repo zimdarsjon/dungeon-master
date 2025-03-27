@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { Monster } from '@/models';
+import type { Open5eMonster, APIMonster } from '@/models';
 import Card from 'primevue/card';
 import { useAbilityScoreHelpers } from '@/composables/ability-score.ts';
 
 const { convertScoreToModifier } = useAbilityScoreHelpers();
 
 const props = defineProps<{
-    monster: Monster
+    monster: Open5eMonster | APIMonster
 }>();
 
 </script>

@@ -5,13 +5,13 @@ export interface ApiSearchResponse<T> {
     results: T[];
 }
 
-export interface Monster {
+export interface Open5eMonster {
     actions: Action[]; // Define this based on the specific structure of actions
     alignment: string;
     armor_class: number;
     armor_desc: string;
     bonus_actions: any | null; // Define based on specific structure if needed
-      challenge_rating: string;
+    challenge_rating: string;
     charisma: number;
     charisma_save: number;
     condition_immunities: string;
@@ -71,10 +71,102 @@ export interface Action {
     desc: string
 }
 
+export interface APIMonster {
+    index: string;
+    name: string;
+    size: string;
+    type: string;
+    alignment: string;
+    armor_class: APIArmorClass[];
+    hit_points: number;
+    hit_dice: string;
+    hit_points_roll: string;
+    speed: APISpeed,
+    strength: number,
+    dexterity: number,
+    constitution: number,
+    intelligence: number,
+    wisdom: number,
+    charisma: number,
+    proficiencies: APIProficiency[],
+    damage_vulnerabilities: string[],
+    damage_resistances: string[],
+    damage_immunities: string[],
+    condition_immunities: APIReference[],
+    senses: {
+        darkvision?: string;
+        passive_perception: number
+    },
+    languages: string;
+    challenge_rating: number;
+    proficiency_bonus: number;
+    xp: number;
+    special_abilities: APIDescription[],
+    actions: APIAction[],
+    image: string;
+    url: string;
+    updated_at: Date;
+    legendary_actions: APIAction[]
+}
+
+export interface APIDescription {
+    name: string;
+    desc: string;
+}
+
+export interface APIAction {
+    name: string;
+    desc: string;
+    attack_bonus?: number;
+    dc?: APIDC;
+    damage?: APIDamage;
+    usage?: APIUsage;
+}
+
+export interface APIDamage {
+    damage_type: APIReference;
+    damage_dice: string;
+}
+
+export interface APIDC {
+    dc_type: APIReference;
+    dc_value: number;
+    success_type: string;
+}
+
+export interface APIUsage {
+    type: string;
+    dice: string;
+    min_value: number;
+}
+
+export interface APIArmorClass {
+    type: string;
+    value: number;
+    armor: APIReference;
+}
+
+export interface APISpeed {
+    walk: string;
+    fly: string;
+    swim: string;
+}
+
+export interface APIProficiency {
+    value: number;
+    proficiency: APIReference;
+}
+
+export interface APIReference {
+    index: string;
+    name: string;
+    url: string;
+}
+
 export enum CombatStatus {
     Inactive = 0,
     Staging = 1,
-    Active  = 2
+    Active = 2
 }
 
 export interface StagedMonster {
@@ -98,4 +190,9 @@ export interface Combatant {
     player?: boolean;
     initiative?: number;
     image?: string;
+}
+
+export enum APISources {
+    DnDApi = 1,
+    OpenApi = 2
 }
