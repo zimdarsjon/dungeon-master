@@ -27,7 +27,7 @@ const { menuItems } = storeToRefs(menuStore);
                 <span>{{ item.label }}</span>
             </a>
         </router-link>
-        <router-link v-else-if="item.to" v-slot="{ href, navigate }" :to="item.to" custom>
+        <router-link v-else-if="item.to" v-slot="{ href, navigate }" :to="{ name: item.to}" custom>
             <a :href="href" v-bind="props.action" @click="navigate">
                 <span :class="item.icon" />
                 <span>{{ item.label }}</span>
