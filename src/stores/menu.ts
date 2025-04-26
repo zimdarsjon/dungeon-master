@@ -4,11 +4,11 @@ import { defineStore } from 'pinia';
 export const useMenuStore = defineStore('menu', () => {
   
     const menuItems = ref<any[]>([
-        // {
-        //     label: 'Home',
-        //     icon: 'pi pi-home',
-        //     route: '/'
-        // },
+        {
+            label: 'World',
+            icon: 'pi pi-globe',
+            route: '/world'
+        },
         {
             label: 'Combat',
             icon: 'pi pi-flag',
