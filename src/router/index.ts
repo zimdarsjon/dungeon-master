@@ -29,7 +29,7 @@ const routes = [
       { path: '/world/zamir', component: Zamir, name: 'zamir' },
       { path: '/world/coppercoast', component: CopperCoast, name: 'coppercoast' },
       { path: '/world/odarris', component: Odarris, name: 'odarris' },
-      { path: '/world/ashan', component: Ashan, name: 'ashan' },
+      { path: 'world/ashan', component: Ashan, name: 'ashan' },
       { path: '/world/ferran', component: Ferran, name: 'ferran' },
       { path: '/world/cauldera', component: Cauldera, name: 'cauldera' },
       { path: '/world/blackburn', component: Blackburn, name: 'black' },
