@@ -175,6 +175,7 @@ export interface StagedMonster {
     modifier: number;
     count?: number;
     image?: string;
+    image2?: string;
 }
 
 export interface StagedPlayer {
@@ -189,7 +190,9 @@ export interface Combatant {
     name: string;
     player?: boolean;
     initiative?: number;
+    activeImage?: string;
     image?: string;
+    image2?: string;
 }
 
 export enum APISources {

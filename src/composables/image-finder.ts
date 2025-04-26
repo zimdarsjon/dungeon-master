@@ -2,7 +2,8 @@ import type { APIMonster, Open5eMonster } from "@/models";
 
 const slugImagePaths : Record<string, string> = {
     'adult-black-dragon-a5e': 'https://writingdragons.com/wp-content/uploads/2016/03/black-dragon-by-kekai-kotaki.jpg?w=700',
-    'adult-black-dragon' : 'https://writingdragons.com/wp-content/uploads/2016/03/black-dragon-by-kekai-kotaki.jpg?w=700'
+    'adult-black-dragon' : 'https://writingdragons.com/wp-content/uploads/2016/03/black-dragon-by-kekai-kotaki.jpg?w=700',
+    'naina': '/naina.png'
 };
 
 const typeImagePaths : Record<string, string> = {
@@ -16,8 +17,10 @@ const typeImagePaths : Record<string, string> = {
 export function useImageHelpers() {
 
     function findOpenMonsterImagePath (monster: Open5eMonster) {
+        console.log(monster)
 
         if (slugImagePaths[monster.slug]) {
+            console.log(slugImagePaths[monster.slug])
             return slugImagePaths[monster.slug];
         } else if (typeImagePaths[monster.type.toLowerCase()]) {
             return typeImagePaths[monster.type.toLowerCase()];

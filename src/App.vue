@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// import DynamicDialog from 'primevue/dynamicdialog';
 import { Toast, DynamicDialog } from 'primevue';
 import { useMenuStore } from './stores/menu';
 import { storeToRefs } from 'pinia';

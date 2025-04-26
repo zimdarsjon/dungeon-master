@@ -24,13 +24,22 @@ const touchedCombatantID = ref<number>(0);
 
 const menu = ref();
 const rightClickItems = ref([
-    // { label: 'Edit', icon: 'pi pi-copy', command: () => combatStore.editEntity(rightClickCombatantID.value)},
     { label: 'Delete', icon: 'pi pi-file-edit', command: () => combatStore.removeCombatantByID(touchedCombatantID.value)}
 ]);
 
 
 const handleRightClick = (event: any, id: number) => {
     touchedCombatantID.value = id;
+
+    if (combatStore.hasSecondaryImage(id)) {
+        rightClickItems.value = [
+            { label: 'Toggle Image', icon: 'pi pi-file-edit', command: () => combatStore.toggleImage(touchedCombatantID.value)},
+            { label: 'Delete', icon: 'pi pi-file-edit', command: () => combatStore.removeCombatantByID(touchedCombatantID.value)}
+        ];
+    } else {
+        rightClickItems.value = [{ label: 'Delete', icon: 'pi pi-file-edit', command: () => combatStore.removeCombatantByID(touchedCombatantID.value)}];
+    }
+
     menu.value.show(event);
 };
 

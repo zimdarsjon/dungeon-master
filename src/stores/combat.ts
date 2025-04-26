@@ -66,6 +66,7 @@ export const useCombatStore = defineStore('combat', () => {
                 player: true,
                 name: player.name,
                 image: player.image,
+                activeImage: player.image,
                 initiative: player.initiative
             } as Combatant)
         }
@@ -121,7 +122,9 @@ export const useCombatStore = defineStore('combat', () => {
                     activeMonsters.push({
                         id: combatantNextID.value++,
                         name: `${monster.name} (${j})`,
+                        activeImage: monster.image,
                         image: monster.image,
+                        image2: monster.image2,
                         initiative: rollDice(20, monster.modifier)
                     })
                 }
@@ -129,7 +132,9 @@ export const useCombatStore = defineStore('combat', () => {
                 activeMonsters.push({
                     id: combatantNextID.value++,
                     name: monster.name,
+                    activeImage: monster.image,
                     image: monster.image,
+                    image2: monster.image2,
                     initiative: rollDice(20, monster.modifier)
                 })
             }
@@ -157,6 +162,33 @@ export const useCombatStore = defineStore('combat', () => {
         }
     };
 
+    const hasSecondaryImage = (id: number) => {
+
+        const combatant = combatants.value.find(combatant => combatant.id === id);
+
+        if (combatant?.image2) {
+            return true;
+        } else {
+            return false;
+        }
+
+    };
+
+    const toggleImage = (id: number) => {
+
+        const combatant = combatants.value.find(combatant => combatant.id === id);
+
+        if (!combatant) {
+            return;
+        }
+
+        if (combatant.image == combatant.activeImage) {
+            combatant.activeImage = combatant.image2;
+        } else {
+            combatant.activeImage = combatant.image;
+        } 
+    }
+
     return {
         combatStatus,
         combatants,
@@ -174,7 +206,9 @@ export const useCombatStore = defineStore('combat', () => {
         nextTurn,
         previousTurn,
         removeCombatantByID,
-        addCustomMonsterToStaged
+        addCustomMonsterToStaged,
+        hasSecondaryImage,
+        toggleImage
     }
 
 })

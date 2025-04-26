@@ -15,7 +15,7 @@ const emit = defineEmits<{
 <template>
     <Card style="width: 23rem; overflow: hidden; padding: 1em; justify-content: space-between;" class="card" @contextmenu="e => emit('rightClick', e, props.combatant.id ?? 0)">
         <template #header>
-            <img v-if="props.combatant.image" :alt="`${combatant.name} image`" :src="props.combatant.image" class="w-full combatant-image" />
+            <img v-if="props.combatant.activeImage" :alt="`${combatant.name} image`" :src="props.combatant.activeImage" class="w-full combatant-image" />
             <span v-else class="m-5 block"><i class="pi pi-image"></i></span>
         </template>
         <template #title>
@@ -32,5 +32,6 @@ const emit = defineEmits<{
 .card {
     border: 1px solid;
     border-color: var(--p-button-outlined-secondary-border-color);
+    height: fit-content;
 }
 </style>

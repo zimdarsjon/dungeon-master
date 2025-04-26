@@ -15,6 +15,8 @@ const dialog = useDialog();
 
 const localMonster = ref<StagedMonster>({} as StagedMonster);
 
+const imageView = ref<1 | 2>(1);
+
 const props = defineProps<{
     monster: StagedMonster
 }>();
@@ -49,7 +51,11 @@ const selectImage = () => {
         },
         onClose: (opt) => {
             if (opt?.data) {
-                localMonster.value.image = opt.data;
+                if (imageView.value == 1) {
+                    localMonster.value.image = opt.data;
+                } else {
+                    localMonster.value.image2 = opt.data;
+                }
             }
         }
     });
@@ -61,9 +67,15 @@ const selectImage = () => {
     <Card style="width: 23rem; overflow: hidden" class="card">
         <template #header>
             <div :class="{ 'cursor-pointer': editMode}" @click="selectImage">
-                <img v-if="props.monster.image && !editMode" alt="user header" :src="props.monster.image" class="w-full monster-image" />
-                <img v-else-if="editMode && localMonster.image" alt="user header" :src="localMonster.image" class="w-full monster-image" />
+                <img v-if="props.monster.image && !editMode && imageView == 1" alt="user header" :src="props.monster.image" class="w-full monster-image" />
+                <img v-else-if="props.monster.image2 && !editMode && imageView == 2" alt="user header" :src="props.monster.image2" class="w-full monster-image" />
+                <img v-else-if="editMode && localMonster.image && imageView == 1" alt="user header" :src="localMonster.image" class="w-full monster-image" />
+                <img v-else-if="editMode && localMonster.image2 && imageView == 2" alt="user header" :src="localMonster.image2" class="w-full monster-image" />
                 <span v-else class="m-5 block" ><i class="pi pi-image" ></i></span>
+            </div>
+            <div class="flex w-full justify-content-center mt-2 gap-2">
+                <Button :severity="imageView == 2 ? 'secondary' : ''" @click="imageView = 1">1</Button>
+                <Button :severity="imageView == 1 ? 'secondary' : ''" @click="imageView = 2">2</Button>
             </div>
         </template>
         <template #title>
